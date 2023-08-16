@@ -32,10 +32,17 @@ let rev list =
     in 
     r list rl;;
 
+let grab list = 
+  match list with
+  | [] -> None
+  | h :: _ -> Some h
+
 
 let () = 
   let a = last ["a" ; "b" ; "c" ; "d"] in 
+  let f = grab ["a" ; "b" ; "c" ; "d"] in 
   assert (a = Some "d");
+  assert (f = Some "b");
   let b = last_two ["a"; "b"; "c"; "d"] in 
   assert (b = Some ("c", "d"));
   let c = atindex ["a"; "b"; "c"; "d"; "e"] 3 in
