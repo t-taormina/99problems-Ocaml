@@ -13,7 +13,7 @@ let rec last_two list =
 let rec atindex list idx = 
   match list with 
   | [] -> None
-  | h :: t -> if idx = 0 then Some h else atindex t (idx - 1) 
+  | h :: t -> if idx = 0 then Some h else atindex t (idx - 1);;
 
 let length list = 
   let rec len list n = 
@@ -32,15 +32,29 @@ let rev list =
     in 
     r list rl;;
 
+let is_palindrome list = 
+  list = rev list;;
+
 let () = 
   let a = last ["a" ; "b" ; "c" ; "d"] in 
   assert (a = Some "d");
+
   let b = last_two ["a"; "b"; "c"; "d"] in 
   assert (b = Some ("c", "d"));
+
   let c = atindex ["a"; "b"; "c"; "d"; "e"] 3 in
   assert (c = Some "d");
+
   let d = length ["a"; "b"; "c"; "d"; "e"] in 
   assert (d = 5);
+
   let e = rev ["a"; "b"; "c"] in
   assert (e = ["c"; "b"; "a"]);
+
+  let f = is_palindrome ["x"; "a"; "m"; "a"; "x"] in 
+  assert (f = true);
+
+  let g = is_palindrome ["a"; "m"; "a"; "x"] in 
+  assert (g = false);
+
   ()
